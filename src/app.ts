@@ -1,6 +1,18 @@
 import { format, getYear } from "date-fns";
-import { getConfigFromSheet } from "./ConfigSheet";
+import { getConfigFromSheet, addMenu, CONFIG_SPREADSHEET_URL } from "./ConfigSheet";
 import { getNonBusinessDays } from "./japaneseBusinessDay";
+
+export function init() {
+  ScriptApp.getProjectTriggers().forEach((t) => ScriptApp.deleteTrigger(t));
+  ScriptApp.newTrigger(onConfigSheetOpen.name)
+    .forSpreadsheet(SpreadsheetApp.openByUrl(CONFIG_SPREADSHEET_URL))
+    .onOpen()
+    .create();
+}
+
+export function onConfigSheetOpen() {
+  addMenu(main);
+}
 
 export function main() {
   const { outputSpreadsheetUrl, storeCode } = getConfigFromSheet();
