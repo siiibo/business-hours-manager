@@ -15,7 +15,9 @@
     "postinstall": "mkdir -p build && cp appsscript.json build/appsscript.json"
   },
   "dependencies": {
-    "date-fns": "^2.29.3"
+    "date-fns": "^2.29.3",
+    "remeda": "^1.6.0",
+    "zod": "^3.20.2"
   },
   "devDependencies": {
     "@google/clasp": "^2.4.2",
