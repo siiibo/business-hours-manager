@@ -1,5 +1,5 @@
 {
-  "name": "gas-template",
+  "name": "business-hours-manager",
   "version": "1.0.0",
   "description": "",
   "main": "build/backend.js",
@@ -14,7 +14,11 @@
     "buildpush": "cp appsscript.json build/appsscript.json && npx webpack && clasp push --force",
     "postinstall": "mkdir -p build && cp appsscript.json build/appsscript.json"
   },
-  "dependencies": {},
+  "dependencies": {
+    "date-fns": "^2.29.3",
+    "remeda": "^1.6.0",
+    "zod": "^3.20.2"
+  },
   "devDependencies": {
     "@google/clasp": "^2.4.2",
     "@types/google-apps-script": "^1.0.29",
