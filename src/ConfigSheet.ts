@@ -2,14 +2,6 @@ import { z } from "zod";
 
 const ConfigSchema = z.object({
   outputSpreadsheetUrl: z.string(),
-  // TODO: 理由書く
-  targetYears: z.union([z.number(), z.string()]).transform((v) => {
-    if (typeof v === "string") {
-      return v.replace(/\s/g, "").split(",").map(Number);
-    } else {
-      return [v];
-    }
-  }),
   storeCode: z.string()
 });
 
@@ -23,7 +15,6 @@ export function getConfigFromSheet() {
   const sheetValues = configSheet.getRange(1, 2, 3).getValues().flat();
   return ConfigSchema.parse({
     outputSpreadsheetUrl: sheetValues[0],
-    targetYears: sheetValues[1],
     storeCode: sheetValues[2]
   });
 }

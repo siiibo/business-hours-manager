@@ -1,9 +1,12 @@
-import { format } from "date-fns";
+import { format, getYear } from "date-fns";
 import { getConfigFromSheet } from "./ConfigSheet";
 import { getNonBusinessDays } from "./japaneseBusinessDay";
 
 export function main() {
-  const { outputSpreadsheetUrl, targetYears, storeCode } = getConfigFromSheet();
+  const { outputSpreadsheetUrl, storeCode } = getConfigFromSheet();
+
+  const thisYear = getYear(new Date());
+  const targetYears = [thisYear, thisYear + 1];
 
   const outputSpreadsheet = SpreadsheetApp.openByUrl(outputSpreadsheetUrl);
   const newSheetName = `${targetYears.join("-")}-休業日`;
