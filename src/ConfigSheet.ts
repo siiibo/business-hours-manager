@@ -2,7 +2,7 @@ import { z } from "zod";
 
 const ConfigSchema = z.object({
   outputSpreadsheetUrl: z.string(),
-  storeCode: z.string(),
+  storeCode: z.string().min(1),
 });
 
 export const CONFIG_SPREADSHEET_URL =
@@ -16,7 +16,7 @@ export function getConfigFromSheet() {
   const sheetValues = configSheet.getRange(1, 2, 3).getValues().flat();
   return ConfigSchema.parse({
     outputSpreadsheetUrl: sheetValues[0],
-    storeCode: sheetValues[2],
+    storeCode: sheetValues[1],
   });
 }
 
